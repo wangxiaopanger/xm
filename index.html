@@ -4,17 +4,34 @@
     <meta charset="UTF-8">
     <title>小米商城</title>
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_779628_5wg94zljfz2.css">
+    <script src="../animate.js"></script>
     <link rel="stylesheet" href="css/index.css">
-    <script src="animate.js"></script>
-    <script src="function.js"></script>
 </head>
 <body>
-<div class="icon">
-    <i class="iconfont icon-gerenzhongxinwoderenwubiaozhuntouxianxing"></i>
-    <i class="iconfont icon-lianxikefu"></i>
-    <i class="iconfont icon-gouwuche1"></i>
+<div class="bor_r">
+    <div class="icon">
+        <i class="iconfont icon-gerenzhongxinwoderenwubiaozhuntouxianxing">
+            <div class="box">个人中心
+                <div class="box_z"></div>
+            </div>
+        </i>
+        <i class="iconfont icon-lianxikefu">
+            <div class="box">联系客服
+                <div class="box_z"></div>
+            </div>
+        </i>
+        <i class="iconfont icon-gouwuche1">
+            <div class="box">购物车（0）
+                <div class="box_z"></div>
+            </div>
+        </i>
+    </div>
+    <i class="iconfont icon-huidingbu re">
+        <div class="box">回顶部
+            <div class="box_z"></div>
+        </div>
+    </i>
 </div>
-<i class="iconfont icon-huidingbu re"></i>
 <!-- 导航栏开始 -->
 <nav>
     <div class="top">
@@ -45,18 +62,18 @@
     <div class="bottom">
         <div class="container">
             <div class="left"><img src="img/logo.png" alt=""></div>
-            <div class="center">
-                <a href="">小米手机</a>
-                <a href="">红米</a>
-                <a href="">电视</a>
-                <a href="">笔记本</a>
-                <a href="">盒子</a>
-                <a href="">新品</a>
-                <a href="">路由器</a>
-                <a href="">智能硬件</a>
-                <a href="">服务</a>
-                <a href="">社区</a>
-            </div>
+            <ul>
+                <li>小米手机</li>
+                <li>红米</li>
+                <li>电视</li>
+                <li>笔记本</li>
+                <li>盒子</li>
+                <li>新品</li>
+                <li>路由器</li>
+                <li>智能硬件</li>
+                <li>服务</li>
+                <li>社区</li>
+            </ul>
             <div class="right">
                 <form action="">
                     <input type="text" class="text">
@@ -1145,10 +1162,21 @@
     <div class="container">
         <h1>小米闪购
             <div class="left"><p>&lt</p></div>
-            <div class="right"><p>&gt</p></div>
+            <div class="rt"><p>&gt</p></div>
         </h1>
         <div class="xia">
-            <img src="img/m1.png" alt="" class="m1">
+            <div class="m1">
+                <div class="title">18:00 场</div>
+                <img src="img/sd.png" alt="">
+                <p>距离开始还有</p>
+                <div class="time">
+                    <div class="box1">01</div>
+                    <span>:</span>
+                    <div class="box1">14</div>
+                    <span>:</span>
+                    <div class="box1">53</div>
+                </div>
+            </div>
             <ul class="gou">
                 <li>
                     <div class="top">5折秒杀</div>
@@ -1729,7 +1757,7 @@
             <div class="top">
                 <h1>为你推荐
                     <div class="left"><p>&lt</p></div>
-                    <div class="right"><p>&gt</p></div>
+                    <div class="rt"><p>&gt</p></div>
                 </h1>
             </div>
             <div class="bottom">
@@ -2017,26 +2045,34 @@
             </div>
             <div class="bottom">
                 <li>
-                    <img src="img/s1.jpg" alt="">
-                    <div class="btn iconfont icon-bofang"></div>
+                    <div class="tp">
+                        <img src="img/s1.jpg" alt="">
+                        <div class="btn iconfont icon-bofang"></div>
+                    </div>
                     <a href="">一团火</a>
                     <p>小米创业8年内部纪录片（手机篇）</p>
                 </li>
                 <li>
-                    <img src="img/s1.jpg" alt="">
-                    <div class="btn iconfont icon-bofang"></div>
+                    <div class="tp">
+                        <img src="img/s1.jpg" alt="">
+                        <div class="btn iconfont icon-bofang"></div>
+                    </div>
                     <a href="">一团火</a>
                     <p>小米创业8年内部纪录片（手机篇）</p>
                 </li>
                 <li>
-                    <img src="img/s1.jpg" alt="">
-                    <div class="btn iconfont icon-bofang"></div>
+                    <div class="tp">
+                        <img src="img/s1.jpg" alt="">
+                        <div class="btn iconfont icon-bofang"></div>
+                    </div>
                     <a href="">一团火</a>
                     <p>小米创业8年内部纪录片（手机篇）</p>
                 </li>
                 <li>
-                    <img src="img/s1.jpg" alt="">
-                    <div class="btn iconfont icon-bofang"></div>
+                    <div class="tp">
+                        <img src="img/s1.jpg" alt="">
+                        <div class="btn iconfont icon-bofang"></div>
+                    </div>
                     <a href="">一团火</a>
                     <p>小米创业8年内部纪录片（手机篇）</p>
                 </li>
@@ -2384,31 +2420,42 @@
     let translate = function (bbox, lbot, rbot, num) {
         let w = parseInt(getComputedStyle(bbox, null).width) / num;
         let i = 0;
+        lbot.classList.remove("atv");
+        rbot.classList.add("atv");
         lbot.onclick = function () {
             i--;
+            if (i == 0) {
+                lbot.classList.remove("atv");
+            }
             if (i == -1) {
                 i = 0;
             }
+            rbot.classList.add("atv");
             bbox.style.transform = `translate(${(-w * i)}px)`;
         }
         rbot.onclick = function () {
             i++;
+            if (i == num - 1) {
+                rbot.classList.remove("atv");
+            }
             if (i == num) {
                 i = num - 1;
             }
+            lbot.classList.add("atv");
             bbox.style.transform = `translate(${(-w * i)}px)`;
         }
     }
 
+
     let bbox = document.querySelector(".you .bottom");
     let lbot = document.querySelector(".you .left");
-    let rbot = document.querySelector(".you .right");
+    let rbot = document.querySelector(".you .rt");
     translate(bbox, lbot, rbot, 4);
 
 
     let bbox1 = document.querySelector(".bottom1 .gou");
     let lbot1 = document.querySelector(".bottom1 h1 .left");
-    let rbot1 = document.querySelector(".bottom1 h1 .right");
+    let rbot1 = document.querySelector(".bottom1 h1 .rt");
     translate(bbox1, lbot1, rbot1, 2);
 
 
@@ -2468,4 +2515,35 @@
         animate(document.body, {scrollTop: 0});
         animate(document.documentElement, {scrollTop: 0});
     }
+
+
+    let ig = document.querySelectorAll("main .video .bottom li .tp");
+    let btn = document.querySelectorAll("main .video .bottom li .btn");
+    ig.forEach(function (value, index) {
+        ig[index].onmouseover = function () {
+            btn[index].style.background = "#ff6700";
+            btn[index].style.border = "none";
+            btn[index].style.lineHeight = "24px";
+        }
+        ig[index].onmouseout = function () {
+            btn[index].style.background = "none";
+            btn[index].style.border = "2px solid #fff";
+            btn[index].style.lineHeight = "20px";
+        }
+    })
+
+
+    let i = document.querySelectorAll(".bor_r i");
+    let box = document.querySelectorAll(".bor_r .box");
+    i.forEach(function (value, index) {
+        i[index].onmouseover = function () {
+            i.forEach(function (e, i) {
+                box[i].style.display = "none";
+            })
+            box[index].style.display = "block";
+        }
+        i[index].onmouseout = function () {
+            box[index].style.display = "none";
+        }
+    })
 </script>
