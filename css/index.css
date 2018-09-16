@@ -12,6 +12,12 @@
     text-decoration: none;
 }
 
+.top_t {
+    height: 120px;
+    background-image: url("../img/top.jpg");
+    background-position: center;
+}
+
 .icon {
     width: 27px;
     height: 120px;

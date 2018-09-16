@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>小米商城</title>
+    <link rel="shortcut icon" href="img/favicon.ico">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_779628_5wg94zljfz2.css">
     <script src="animate.js"></script>
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+<div class="top_t"></div>
 <div class="bor_r">
     <div class="icon">
         <i class="iconfont icon-gerenzhongxinwoderenwubiaozhuntouxianxing">
@@ -2546,4 +2548,31 @@
             box[index].style.display = "none";
         }
     })
+</script>
+<script>
+    let s_t1 = s_time();
+    setInterval(s_time, 1000);
+
+    function s_time() {
+        let s_arr = s_t();
+        let s_box = document.querySelectorAll(".box1");
+        s_box.forEach((element, index) => {
+            element.innerHTML = s_arr[index];
+        })
+    }
+
+    function s_t() {
+        let arr = new Array;
+        let now = new Date();
+        let next = new Date(2060, 9, 1, 18);
+        let time = (next.getTime() - now.getTime()) / 1000;
+        let tm = Math.floor((time % (30 * 24 * 60 * 60) % (24 * 60 * 60) / (60 * 60)));
+        arr.push(tm);
+        let min = Math.floor((time % (30 * 24 * 60 * 60) % (24 * 60 * 60) % (60 * 60) / 60));
+        arr.push(min);
+        let s = Math.floor((time % (30 * 24 * 60 * 60) % (24 * 60 * 60) % (60 * 60) % 60));
+        arr.push(s);
+        return arr;
+    }
+
 </script>
