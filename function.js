@@ -1,31 +1,31 @@
 // 选项卡函数
 //  a 获取到移入的元素
 //  b 获取到移入之后显示的元素
-let xuan = function (a, b) {
+let tab = function (a, b) {
     for (let i = 0; i < a.length; i++) {
         a[i].onmouseover = function () {
             for (let j = 0; j < b.length; j++) {
                 b[j].style.display = "none";
             }
             b[i].style.display = "block";
-        }
+        };
         a[i].onmouseout = function () {
             b[i].style.display = "none";
         }
     }
-}
+};
 
 // 遮罩函数
 // a 获取到要移入的元素
 // b 获取到移入a元素上显示的遮罩元素
-let zhe = function (a, b) {
+let mask = function (a, b) {
     a.onmouseover = function () {
         b.style.display = "block";
-    }
+    };
     a.onmouseout = function () {
         b.style.display = "none";
     }
-}
+};
 
 // 层级轮播图函数
 // imgs 获取到所有图的元素
@@ -34,7 +34,7 @@ let zhe = function (a, b) {
 // max 要轮播的图的数量
 // con 获取到移入之后停止自动轮播的元素
 // time 轮播图切换一次的时间
-let Zlunbo = function (imgs, bots, at, max, con, time) {
+let Hierarchy = function (imgs, bots, at, max, con, time) {
     imgs[0].style.zIndex = "2";
     bots[0].classList.add("at");
     for (let i = 0; i < bots.length; i++) {
@@ -53,7 +53,7 @@ let Zlunbo = function (imgs, bots, at, max, con, time) {
 
     function move() {
         num++;
-        if (num == max) {
+        if (num === max) {
             num = 0;
         }
         for (let i = 0; i < bots.length; i++) {
@@ -66,11 +66,11 @@ let Zlunbo = function (imgs, bots, at, max, con, time) {
 
     con.onmouseover = function () {
         clearInterval(t);
-    }
+    };
     con.onmouseout = function () {
         t = setInterval(move, time);
     }
-}
+};
 // 透明度轮播图函数
 // imgs 获取到所有图的元素
 // bots 获取到所有点的元素
@@ -78,7 +78,7 @@ let Zlunbo = function (imgs, bots, at, max, con, time) {
 // max 要轮播的图的数量
 // con 获取到移入之后停止自动轮播的元素
 // time 轮播图切换一次的时间
-let Olunbo = function (imgs, bots, at, max, con, time) {
+let Opacity = function (imgs, bots, at, max, con, time) {
     imgs[0].style.opacity = "1";
     bots[0].classList.add("at");
     for (let i = 0; i < bots.length; i++) {
@@ -97,7 +97,7 @@ let Olunbo = function (imgs, bots, at, max, con, time) {
 
     function move() {
         num++;
-        if (num == max) {
+        if (num === max) {
             num = 0;
         }
         for (let i = 0; i < bots.length; i++) {
@@ -110,16 +110,16 @@ let Olunbo = function (imgs, bots, at, max, con, time) {
 
     con.onmouseover = function () {
         clearInterval(t);
-    }
+    };
     con.onmouseout = function () {
         t = setInterval(move, time);
     }
-}
+};
 
 // 轮播点单击时
 // lis 获取到所有点的元素
 // btn 轮播点选中状态的类名
-let Onbot = function (lis, btn) {
+let point = function (lis, btn) {
     // 1.遍历获取到的元素列表
     for (let i = 0; i < lis.length; i++) {
         lis[i].onclick = function () {
@@ -131,7 +131,7 @@ let Onbot = function (lis, btn) {
             lis[i].classList.add("btn");
         }
     }
-}
+};
 
 // 双下标轮播函数/左右轮播函数
 // imgs：获取到所有图片的元素
@@ -142,7 +142,7 @@ let Onbot = function (lis, btn) {
 // widths：轮播图的宽度，整数
 // at 轮播点选中状态的类名
 // time 轮播图切换一次的时间
-function banner_LR(imgs, bots, con, left, right, widths, at, time = "2000") {
+function DoubleSubscript(imgs, bots, con, left, right, widths, at, time = "2000") {
     imgs[0].style.left = "0";
     bots[0].classList.add("at");
     let now = 0;
@@ -150,11 +150,13 @@ function banner_LR(imgs, bots, con, left, right, widths, at, time = "2000") {
     // 开关：控制快速点击时图片会快速轮播的现象
     // 默认是打开，左右箭头可以点击
     let flag = true;
+    /*自动轮播*/
     let t = setInterval(move, time);
 
+    /*向左  点击右侧按钮   移入当前轮播点右侧轮播点   自动*/
     function move() {
         next++;
-        if (next == imgs.length) {
+        if (next === imgs.length) {
             next = 0;
         }
         imgs[next].style.left = widths + "px";
@@ -167,14 +169,16 @@ function banner_LR(imgs, bots, con, left, right, widths, at, time = "2000") {
         now = next;
     }
 
+    /*移入移出轮播图*/
     con.onmouseover = function () {
         clearInterval(t);
-    }
+    };
     con.onmouseout = function () {
         t = setInterval(move, time);
-    }
+    };
 
-    function movel() {
+    /*向右  点击左侧按钮   移入当前轮播点左侧轮播点*/
+    function leftMove() {
         next--;
         if (next < 0) {
             next = imgs.length - 1;
@@ -191,30 +195,29 @@ function banner_LR(imgs, bots, con, left, right, widths, at, time = "2000") {
 
     left.onclick = function () {
         // 判断开关是否开启
-        // 开关开启，则！flag=false，不执行return,执行flag=false和movel，move执行完flag=true
+        // 开关开启，则！flag=false，不执行return,执行flag=false和leftMove，move执行完flag=true
 
         if (!flag) {
             return;
         }
         flag = false;
-        movel();
-    }
+        leftMove();
+    };
     right.onclick = function () {
         // 判断开关是否开启
-        // 开关开启，则！flag=false，不执行return,执行flag=false和movel，move执行完flag=true
+        // 开关开启，则！flag=false，不执行return,执行flag=false和move，move执行完flag=true
         if (!flag) {
             return;
         }
         flag = false;
         move();
-    }
+    };
 
     for (let i = 0; i < bots.length; i++) {
         bots[i].onmouseover = function () {
-            if (i == now) {
+            if (i === now) {
                 return;
-            }
-            else if (i > now) {
+            } else if (i > now) {
                 imgs[i].style.left = widths + "px";
                 animate(imgs[now], {left: -widths});
                 animate(imgs[i], {left: 0}, function () {
@@ -223,8 +226,7 @@ function banner_LR(imgs, bots, con, left, right, widths, at, time = "2000") {
                 bots[now].classList.remove("at");
                 bots[i].classList.add("at");
                 now = next = i;
-            }
-            else{
+            } else {
                 imgs[i].style.left = -widths + "px";
                 animate(imgs[now], {left: widths});
                 animate(imgs[i], {left: 0});
@@ -237,10 +239,10 @@ function banner_LR(imgs, bots, con, left, right, widths, at, time = "2000") {
 
     window.onblur = function () {
         clearInterval(t);
-    }
+    };
     window.onfocus = function () {
         t = setInterval(move, time);
-    }
+    };
 }
 
 
